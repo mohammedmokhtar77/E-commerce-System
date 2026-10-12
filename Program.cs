@@ -1,3 +1,6 @@
+using Ecommerce_System.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Ecommerce_System;
 
 public class Program
@@ -6,6 +9,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddDbContext<ECommerceContext>(
+            options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
         // Add services to the container.
         builder.Services.AddAuthorization();
 
